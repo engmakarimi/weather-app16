@@ -17,4 +17,7 @@ export class WeatherLayoutComponent {
       (p:any) => console.log(p)
     )
    }
+   throwTestError(): void {
+    throw new Error("Sentry Test Error");
+  }
 }

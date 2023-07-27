@@ -1,13 +1,14 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { APP_INITIALIZER, ApplicationConfig, ErrorHandler } from '@angular/core';
+import { Router, provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { metaReducers } from './state';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { AUTH_FEATURE_KEY, authReducer } from './pages/login/state/auth.reducer';
 import { provideEffects } from '@ngrx/effects';
+import * as Sentry from "@sentry/angular-ivy";
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +24,22 @@ export const appConfig: ApplicationConfig = {
     }),
     provideStoreDevtools(),
     provideEffects(),
+
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: true,
+      }),
+    }, {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
   
   ]
 };
