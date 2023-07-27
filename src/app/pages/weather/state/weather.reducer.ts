@@ -3,7 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { Weather } from '../type';
 import { WeatherActions } from './action-types';
 
-export const Weather_FEATURE_KEY = 'weather';
+export const WEATHER_FEATURE_KEY = 'weather';
 
 export interface WeatherState {
   searchTerm: string;
@@ -35,7 +35,7 @@ const reducer = createReducer(
   on(WeatherActions.removeSearchTerm, (state) => {
     return {
      ...state,
-     searchTer:'',
+     searchTerm:'',
      weatherData: null,
      loading: false,
      loaded: true,

@@ -1,2 +1,13 @@
-<p>main-layout works!</p>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary" class="flex flex-row justify-between px-8">
+    <div class="flex flex-row items-start">
+      <mat-icon class="mx-2 mt-1">account_circle</mat-icon>
+      <!-- <span>{{ authService.UserName }}</span> -->
+    </div>
+    <button mat-icon-button class="example-icon" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div class="w-full p-8 block">
+    <router-outlet></router-outlet>
+  </div>
+  

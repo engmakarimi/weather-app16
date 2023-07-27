@@ -52,21 +52,21 @@ export class AuthEffects {
     )
   );
 
-  authenticatedFailure$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.authenticatedFailure),
-        switchMap(() =>
-          this.activatedRoute.fragment.pipe(
-            filter((fragment) => !!fragment),
-            tap(() => this.router.navigate([]))
-          )
-        )
-      ),
-    {
-      dispatch: false,
-    }
-  );
+  // authenticatedFailure$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(AuthActions.authenticatedFailure),
+  //       switchMap(() =>
+  //         this.activatedRoute.fragment.pipe(
+  //           filter((fragment) => !!fragment),
+  //           tap(() => this.router.navigate([]))
+  //         )
+  //       )
+  //     ),
+  //   {
+  //     dispatch: false,
+  //   }
+  // );
 
   signOut$ = createEffect(() =>
     this.actions$.pipe(

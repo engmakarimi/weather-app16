@@ -8,38 +8,38 @@ import { metaReducers } from './state';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import * as Sentry from "@sentry/angular-ivy";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideStore({},{metaReducers,
-      runtimeChecks : {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictActionSerializability: true,
-        strictStateSerializability:true
-    }
+    provideStore({}, { metaReducers,
+        // runtimeChecks: {
+        //     strictStateImmutability: true,
+        //     strictActionImmutability: true,
+        //     strictActionSerializability: true,
+        //     strictStateSerializability: true
+        // }
     }),
     provideStoreDevtools(),
     provideEffects(),
-
     {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: true,
-      }),
+        provide: ErrorHandler,
+        useValue: Sentry.createErrorHandler({
+            showDialog: true,
+        }),
     }, {
-      provide: Sentry.TraceService,
-      deps: [Router],
+        provide: Sentry.TraceService,
+        deps: [Router],
     },
     {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
+        provide: APP_INITIALIZER,
+        useFactory: () => () => { },
+        deps: [Sentry.TraceService],
+        multi: true,
     },
-  
-  ]
+    provideAnimations()
+]
 };

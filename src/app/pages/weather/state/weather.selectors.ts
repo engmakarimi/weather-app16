@@ -1,12 +1,12 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  Weather_FEATURE_KEY,
+  WEATHER_FEATURE_KEY,
   WeatherState,
 } from './weather.reducer';
 
 // Lookup the 'Weather' feature state managed by NgRx
 export const selectWeatherState =
-  createFeatureSelector<WeatherState>(Weather_FEATURE_KEY);
+  createFeatureSelector<WeatherState>(WEATHER_FEATURE_KEY);
 
   export const selectSearchTerm = createSelector(
     selectWeatherState,

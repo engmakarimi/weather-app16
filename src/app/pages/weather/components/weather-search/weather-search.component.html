@@ -1,1 +1,9 @@
-<p>weather-search works!</p>
+<mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Enter your search term" [formControl]="searchTermControl" [value]="searchTerm$ | async">
+    <button  matSuffix mat-icon-button *ngIf="searchTerm$ | async" aria-label="Clear" (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  
+  <button mat-raised-button color="primary" (click)="onSearchClick()">Search</button>

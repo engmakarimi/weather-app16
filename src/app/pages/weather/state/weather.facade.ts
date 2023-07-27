@@ -17,13 +17,14 @@ export class WeatherFacade {
   weatherData$ = this.store.pipe(select(WeatherSelectors.selectWeatherData));
   searchTerm$ = this.store.pipe(select(WeatherSelectors.selectSearchTerm));
 
-  
-  search(searchTerm:string){
-    this.store.dispatch(WeatherActions.setSearchTerm({searchTerm}))
+  setSearchTerm(searchTerm: string) {
+    this.store.dispatch(WeatherActions.setSearchTerm({ searchTerm }));
   }
+  executeSearch() {
+    this.store.dispatch(WeatherActions.doSearch());
 
+  }
   resetSearch() {
     this.store.dispatch(WeatherActions.removeSearchTerm());
   }
-  
 }
