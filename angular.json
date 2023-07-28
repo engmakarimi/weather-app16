@@ -36,10 +36,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/weather-app/en-US",
+            "outputPath": "dist/weather-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "localize": true, 
             "i18nMissingTranslation": "error",
             "polyfills": [
               "zone.js"
@@ -77,7 +76,7 @@
             },
             "fr": {
               "localize": ["fr"],
-              "outputPath": "dist/weather-app/fr/",
+              "outputPath": "dist/weather-app/",
               "i18nMissingTranslation": "error"
             },
             "development": {
