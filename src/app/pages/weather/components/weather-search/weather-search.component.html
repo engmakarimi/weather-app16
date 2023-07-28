@@ -1,9 +1,9 @@
 <mat-form-field appearance="fill">
-    <mat-label>Search</mat-label>
-    <input matInput placeholder="Enter your search term" [formControl]="searchTermControl" [value]="searchTerm$ | async">
+    <mat-label i18n>Search</mat-label>
+    <input matInput [formControl]="searchTermControl" [value]="searchTerm$ | async">
     <button  matSuffix mat-icon-button *ngIf="searchTerm$ | async" aria-label="Clear" (click)="clearSearch()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
   
-  <button mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
+  <button mat-raised-button color="primary" (click)="onSearchClick()" i18n>Search</button>

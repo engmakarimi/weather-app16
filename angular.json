@@ -8,6 +8,15 @@
   "projects": {
     "weatherApp": {
       "projectType": "application",
+      "i18n": { 
+        "sourceLocale": "en-US", 
+        "locales": { 
+          "fr": { 
+            "translation": "src/locale/messages.fr.xlf" ,
+            "baseHref": ""
+          }
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
@@ -30,6 +39,8 @@
             "outputPath": "dist/weather-app",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "localize": true, 
+            "i18nMissingTranslation": "error",
             "polyfills": [
               "zone.js"
             ],
@@ -64,6 +75,11 @@
               ],
               "outputHashing": "all"
             },
+            "fr": {
+              "localize": ["fr"],
+              "outputPath": "dist/under-construction-fr/",
+              "i18nMissingTranslation": "error"
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -86,6 +102,9 @@
           "configurations": {
             "production": {
               "browserTarget": "weatherApp:build:production"
+            },
+            "fr": {
+              "browserTarget": "weatherApp:build:fr"
             },
             "development": {
               "browserTarget": "weatherApp:build:development"

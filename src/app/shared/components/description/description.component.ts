@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="flex gap-2">
       <div class="flex-none font-medium	">
-        <ng-content select="[descriptions-title]"></ng-content>:
+        <ng-content select="[descriptions-title]" ></ng-content>:
       </div>
       <div class="flex-grow">
         <ng-content></ng-content>
