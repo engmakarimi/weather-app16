@@ -2,29 +2,29 @@
 <div class="card__row">
     <app-description>
         <span descriptions-title i18n>current </span>
-        {{weatherData?.temp}}
+        {{weatherData?.temp | celsius}}
     </app-description> 
     <app-description>
         <span descriptions-title i18n>feels</span>
-        {{weatherData?.temp_feels}}
+        {{weatherData?.temp_feels | celsius}}
     </app-description>
     
 </div>
 <div class="card__row">
     <app-description>
         <span descriptions-title i18n>max</span>
-        {{weatherData?.temp_max}}
+        {{weatherData?.temp_max | celsius}}
     </app-description> 
     <app-description>
         <span descriptions-title i18n>min</span>
-        {{weatherData?.temp_min}}
+        {{weatherData?.temp_min | celsius}}
     </app-description>
     
 </div>
 <div class="card__row">
     <app-description>
         <span descriptions-title i18n>humidity</span>
-        {{weatherData?.humidity}}
+        {{weatherData?.humidity }}
     </app-description>
     
 </div>
