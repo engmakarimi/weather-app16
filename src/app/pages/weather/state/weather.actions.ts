@@ -5,16 +5,15 @@ export const setSearchTerm = createAction(
   props<{ searchTerm: string }>()
 );
 export const doSearch = createAction(
-    '[weather search button ] Do Search '
+    '[weather search button ] Do Search ' );
    
-  );
 export const searchFailure = createAction(
     '[weather API] search weather Failure',
     props<{ error: any }>()
   );
   export const searchSuccess = createAction(
-    '[weather API] search weather successful',
-    props<{ weather: Weather }>()
+  '[weather API] search weather successful',
+   props<{weather:Weather}>()
   );
   export const removeSearchTerm = createAction(
     '[weather Search] remove search Term and Data'

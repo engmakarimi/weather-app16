@@ -7,8 +7,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { WeatherFacade } from '../../state';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
-import { filter } from 'rxjs/internal/operators/filter';
-import { map } from 'rxjs/internal/operators/map';
+
 
 @Component({
   selector: 'app-weather-search',

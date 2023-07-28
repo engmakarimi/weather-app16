@@ -1,4 +1,18 @@
-<app-weather-search></app-weather-search>
-<div class="container__cart mx-auto p-4">
-    <app-weather-card></app-weather-card>
-</div>
+
+  <div class=" container__weather__loading_overlay" *ngIf="isLoading$ | async as isLoading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div *ngIf="!(isLoading$ | async)">
+    <app-weather-search></app-weather-search>
+    <ng-template  [ngIf]="loaded$ | async" [ngIfElse]="noData">
+      <div class="container__cart mx-auto p-4">
+        <app-weather-card
+          [weatherData]="weatherData$ | async"
+        ></app-weather-card>
+      </div>
+    </ng-template>
+
+    <ng-template #noData>
+      <p>no data for presenting</p>
+    </ng-template>
+  </div>

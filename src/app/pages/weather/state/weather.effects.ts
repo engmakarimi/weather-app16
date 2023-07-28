@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { WeatherApiService } from '../services';
 
 import { WeatherActions } from './action-types';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of, switchMap, tap } from 'rxjs';
 import { WeatherFacade } from './weather.facade';
 import { first } from 'rxjs/internal/operators/first';
 
@@ -11,25 +11,22 @@ import { first } from 'rxjs/internal/operators/first';
 export class WeatherEffects {
   private actions$ = inject(Actions);
   private weatherApiService = inject(WeatherApiService);
-  weatherFacade=inject(WeatherFacade);
+  weatherFacade = inject(WeatherFacade);
 
-  search$ = createEffect(() =>
+  exeSearch$ = createEffect(() =>
     this.actions$.pipe(
       ofType(WeatherActions.doSearch),
       switchMap(() => {
         return this.weatherFacade.searchTerm$.pipe(first());
       }),
-      switchMap(( searchTerm ) =>
-        this.weatherApiService.getWeather(searchTerm).pipe(
-          tap((data:any) => {
-            return WeatherActions.searchSuccess({weather:data});
-          }),
-          catchError((error) => {
-            console.error('Error', error);
-            return of(WeatherActions.searchFailure( error))
+      exhaustMap((value) => {
+        return this.weatherApiService.getWeather(value).pipe(
+          map((p) => WeatherActions.searchSuccess({ weather: p })),
+          catchError(({ error }) => {
+            return of(WeatherActions.searchFailure(error));
           })
-          )
-      )
+        );
+      })
     )
   );
 }

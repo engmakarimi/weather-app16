@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../environments/environment';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs';
+import { Weather } from '../type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,13 @@ export class WeatherApiService {
   private apiKey = environment.apiKey;
   private apiUrl = environment.apiUrl;
 
-
-  getWeather(city: string='London'):Observable<any> {
-
+  //.pipe(map((data:any) => ({weather: data}):Observable<{weather:any}>
+  getWeather(city: string) {
+    /**
+     * units=metric ==> return temperature is in Celsius;  
+     */
     const url = `${this.apiUrl}?q=${city}&appid=${this.apiKey}&units=metric`;
-    return this.httpClient.get(url);
+    return this.httpClient.get(url).pipe(map((value:any) => (new Weather(value)))) 
+   
   }
 }

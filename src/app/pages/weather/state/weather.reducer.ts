@@ -18,7 +18,7 @@ export const initialWeatherState: WeatherState =
     // set initial required properties
     searchTerm: '',
     weatherData:null,
-    loaded: true,
+    loaded: false,
   };
 
 const reducer = createReducer(
@@ -28,8 +28,8 @@ const reducer = createReducer(
      ...state,
      searchTerm,
      weatherData: null,
-     loading: true,
-      loaded: false
+     loading: false,
+    loaded: false
     }
   }),
   on(WeatherActions.removeSearchTerm, (state) => {
@@ -42,15 +42,21 @@ const reducer = createReducer(
      error:null
     }
   }),
-  on(WeatherActions.searchSuccess, (state, {weather}) =>
-   {
+  on(WeatherActions.doSearch, (state) => {
     return {
+     ...state,
+     weatherData: null,
+     loading: true,
+     loaded: false,
+     error:null
+    }
+  }),
+  on(WeatherActions.searchSuccess, (state, {weather}) => ({
       ...state,
-      weatherData: weather,
+      weatherData:{...weather},
       loading: false,
       loaded: true
-    };
-   }
+   })
   ),
   on(WeatherActions.searchFailure, (state, { error }) => ({
     ...state,
