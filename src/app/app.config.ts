@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig, ErrorHandler } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, ErrorHandler, isDevMode } from '@angular/core';
 import { Router, provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 
@@ -9,6 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import * as Sentry from "@sentry/angular-ivy";
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideServiceWorker } from '@angular/service-worker';
 
 
 export const appConfig: ApplicationConfig = {
@@ -40,6 +41,13 @@ export const appConfig: ApplicationConfig = {
         deps: [Sentry.TraceService],
         multi: true,
     },
-    provideAnimations()
+    provideAnimations(),
+    
+    // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+    provideServiceWorker('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000'
+    })
 ]
 };

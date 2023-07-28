@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeatherApiService } from '../services';
 import { WeatherSearchComponent } from '../components';
+import { WeatherCardComponent } from '../components/weather-card/weather-card.component';
 
 @Component({
   selector: 'app-weather-layout',
   standalone: true,
-  imports: [CommonModule,WeatherSearchComponent],
+  imports: [CommonModule,WeatherSearchComponent,WeatherCardComponent],
   templateUrl: './weather-layout.component.html',
   styleUrls: ['./weather-layout.component.scss']
 })
