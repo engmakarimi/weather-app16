@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/weather-app",
+            "outputPath": "dist/weather-app/en-US",
             "index": "src/index.html",
             "main": "src/main.ts",
             "localize": true, 
@@ -77,7 +77,7 @@
             },
             "fr": {
               "localize": ["fr"],
-              "outputPath": "dist/under-construction-fr/",
+              "outputPath": "dist/weather-app/fr/",
               "i18nMissingTranslation": "error"
             },
             "development": {
